@@ -7,5 +7,6 @@ return [
         'SpamDetector',
         'Accessibility',
         'Analytics',
+        'RecreatePCacheOnLogin',
     ]
 ];
