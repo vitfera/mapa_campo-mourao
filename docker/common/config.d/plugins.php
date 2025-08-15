@@ -9,5 +9,6 @@ return [
         'Analytics',
         'RecreatePCacheOnLogin',
         'AdminLoginAsUser',
+        'MapasBlame',
     ]
 ];
