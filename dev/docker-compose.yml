@@ -24,6 +24,7 @@ services:
       - ../plugins/MultipleLocalAuth:/var/www/src/plugins/MultipleLocalAuth
       - ../plugins/SpamDetector:/var/www/src/plugins/SpamDetector
       - ../plugins/Accessibility:/var/www/src/plugins/Accessibility
+      - ../plugins/Analytics:/var/www/src/plugins/Analytics
 
     environment:
       - PENDING_PCACHE_RECREATION_INTERVAL=10
