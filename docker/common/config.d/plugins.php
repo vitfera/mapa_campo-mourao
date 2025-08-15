@@ -5,5 +5,6 @@ return [
         'MultipleLocalAuth' => [ 'namespace' => 'MultipleLocalAuth' ],
         'SamplePlugin' => ['namespace' => 'SamplePlugin'],
         'SpamDetector',
+        'Accessibility',
     ]
 ];
