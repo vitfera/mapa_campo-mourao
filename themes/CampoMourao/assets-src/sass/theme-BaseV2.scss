@@ -20,7 +20,7 @@ $secondary-500: #a57758;
 // Entities colors
 $opportunities-500: #6e2091;
 $events-500: #c85103;
-$spaces-500: darken(#0d5830, 15%);
+$spaces-500: #0d5830;
 $agents-500: #d1b84e;
 $projects-500: #4b3730;
 
@@ -65,4 +65,12 @@ $home-register: #0d5830;
 
 .mc-header-logo {
     max-width: 9rem;
+}
+
+.main-header {
+    &__content {
+        .logIn {
+            background: #0d5830;
+        }
+    }
 }
