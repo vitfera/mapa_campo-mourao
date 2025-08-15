@@ -29,6 +29,8 @@ services:
       - ../plugins/AdminLoginAsUser:/var/www/src/plugins/AdminLoginAsUser
       - ../plugins/MapasBlame:/var/www/src/plugins/MapasBlame
 
+      - ../themes/CampoMourao:/var/www/src/themes/CampoMourao
+
     environment:
       - PENDING_PCACHE_RECREATION_INTERVAL=10
       - JOBS_INTERVAL=10
