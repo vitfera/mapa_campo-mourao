@@ -13,7 +13,7 @@ return [
         ],
         'imageOfUsage' => [
             'title'=>  'Autorização de uso de imagem',
-            'text'=> file_get_contents(__DIR__ . '/lgpd-terms/image-of-usage.html'),
+            'text'=> file_get_contents(__DIR__ . '/lgpd-terms/images-use.html'),
             'buttonText' => 'Autorizo o uso de imagem'
         ],
     ]
