@@ -8,8 +8,9 @@ fi
 echo "EDITE ESTE ARQUIVO E DEFINA AS VARIÁVEIS domain, email e staging"
 exit; # E APAGUE ESSA LINHA
 
-# Domínio da instalação
-domain=(mapas.campomourao.pr.gov.br)
+# Domínio(s) da instalação
+domains=(mapas.campomourao.pr.gov.br)
+primary_domain="${domains[0]}"
 
 # Informe um e-mail válido
 email="victor@victorferreira.com.br"
@@ -22,7 +23,7 @@ data_path="./docker-data/certbot"
 rsa_key_size=4096
 
 if [ -d "$data_path" ]; then
-  read -p "Existing data found for $domain. Continue and replace existing certificate? (y/N) " decision
+  read -p "Existing data found for $primary_domain. Continue and replace existing certificate? (y/N) " decision
   if [ "$decision" != "Y" ] && [ "$decision" != "y" ]; then
     exit
   fi
@@ -36,7 +37,7 @@ if [ ! -e "$data_path/conf/options-ssl-nginx.conf" ] || [ ! -e "$data_path/conf/
   echo
 fi
 
-echo "### Creating dummy certificate for $domain ..."
+echo "### Creating dummy certificate for $primary_domain ..."
 path="/etc/letsencrypt/live/mapasculturais"
 mkdir -p "$data_path/conf/live/mapasculturais"
 docker compose -f docker-compose.certbot.yml run --rm --entrypoint "\
@@ -51,7 +52,7 @@ echo "### Starting nginx ..."
 docker compose -f docker-compose.certbot.yml up --force-recreate -d nginx
 echo
 
-echo "### Deleting dummy certificate for $domain ..."
+echo "### Deleting dummy certificate for $primary_domain ..."
 docker compose -f docker-compose.certbot.yml run --rm --entrypoint "\
   rm -Rf /etc/letsencrypt/live/mapasculturais && \
   rm -Rf /etc/letsencrypt/archive/mapasculturais && \
@@ -59,7 +60,7 @@ docker compose -f docker-compose.certbot.yml run --rm --entrypoint "\
 echo
 
 
-echo "### Requesting Let's Encrypt certificate for $domain ..."
+echo "### Requesting Let's Encrypt certificate for $primary_domain ..."
 #Join $domain to -d args
 domain_args=""
 for domain in "${domains[@]}"; do
@@ -90,4 +91,4 @@ docker compose -f docker-compose.certbot.yml down
 
 rm -rf docker-data/certs
 mv docker-data/certbot docker-data/certs
-mv docker-data/certs/conf/live/$domain docker-data/certs/conf/live/mapasculturais
+mv "docker-data/certs/conf/live/$primary_domain" "docker-data/certs/conf/live/mapasculturais"
