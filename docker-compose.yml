@@ -76,6 +76,21 @@ services:
     volumes:
       - ./docker/db:/docker-entrypoint-initdb.d
       - ./docker-data/db-data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "${PGADMIN_PORT}:80"
+    depends_on:
+      - db
+    links:
+      - db
+    volumes:
+      - ./docker-data/pgadmin:/var/lib/pgadmin
     
 
 ## Em ambiente de homologação pode ser uma boa ideia utilizar o mailhog para testar 
