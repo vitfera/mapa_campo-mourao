@@ -25,6 +25,7 @@ return [
                 'scope' => env('AUTH_LINKEDIN_SCOPE', 'r_emailaddress')
             ),
             'Google' => array(
+                'visible' => true,
                 'client_id' => env('AUTH_GOOGLE_CLIENT_ID', true),
                 'client_secret' => env('AUTH_GOOGLE_CLIENT_SECRET', null),
                 'redirect_uri' => $_APP_BASE_URL . 'autenticacao/google/oauth2callback',
